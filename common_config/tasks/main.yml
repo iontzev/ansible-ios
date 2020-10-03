@@ -1,0 +1,23 @@
+---
+# tasks file for common_config
+
+- name: Create rules for access to line vty
+  ios_config:
+    src: rules.j2
+  when: create_rules | bool
+  notify: save config
+  tags: access
+
+- name: Set snmp 
+  ios_config:
+    src: snmp.j2
+  when: set_snmp | bool
+  notify: save config
+  tags: snmp
+
+- name: Define QoS policy 
+  ios_config:
+    src: qos.j2
+  when: define_qos | bool
+  notify: save config
+  tags: qos

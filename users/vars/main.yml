@@ -1,0 +1,27 @@
+---
+# vars file for users
+
+valid_users:
+  - name: cisco
+    privilege: 15
+    hashed_password:
+      type: 5 
+      value: $1$76sE$pvKgMNdpcD9ERyRSD40nH1
+  - name: admin
+    privilege: 15
+    hashed_password:
+      type: 5 
+      value: $1$E9f1$UD4W1aSNTiMA5qeXNbYTd/
+  - name: audit
+    hashed_password:
+      type: 5
+      value: $1$fWll$oxw7XBr8iB4SXLKO08GSS.
+
+invalid_users:
+  - test
+  - bad_user
+
+add_valid_users: true
+remove_all_users_except_valid: false
+remove_invalid_users: true
+save_config: false

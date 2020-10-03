@@ -1,0 +1,15 @@
+---
+
+- name: Test ansible capability
+  hosts: routers
+  gather_facts: no
+
+  roles:
+    - role: info
+      tags: savecfg
+    - role: routing
+      tags: routing
+    - role: users
+      tags: users
+    - role: common_config
+      tags: config

@@ -1,0 +1,8 @@
+---
+# handlers file for users
+
+- name: save_config
+  ios_command:
+    commands:
+      - write
+  when: save_config | bool

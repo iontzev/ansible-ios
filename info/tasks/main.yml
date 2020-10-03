@@ -1,0 +1,12 @@
+---
+# tasks file for info
+
+- name: Get config from device
+  ios_facts:
+    gather_subset: config
+  register: gathered_results
+
+- name: Save config to file
+  copy:
+    content: "{{ gathered_results.ansible_facts.ansible_net_config}}"
+    dest: "{{ role_name}}/files/{{ inventory_hostname }}.cfg"

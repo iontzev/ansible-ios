@@ -1,0 +1,18 @@
+---
+# tasks file for users
+
+- name: Add valid users
+  ios_user:
+    aggregate: "{{ valid_users }}"
+    purge: "{{ remove_all_users_except_valid }}"
+  notify: save_config
+  when: add_valid_users | bool
+
+- name: Delete invalid users
+  cisco.ios.ios_user:
+    name: "{{ item }}"
+    state: absent
+  notify: save_config
+  loop: "{{ invalid_users }}"
+  when: remove_invalid_users | bool
+

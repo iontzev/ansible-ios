@@ -1,0 +1,13 @@
+no ip access-list standard ADMIN_IP_ADDRESSES
+ip access-list standard ADMIN_IP_ADDRESSES
+{% for addr in admins_ip_addresses %}
+  {{ loop.index * 10 }} permit {{ addr.address }} {{ addr.wildcard_mask }}
+{% endfor %}
+  deny any
+  exit
+line vty 0 4
+  access-class ADMIN_IP_ADDRESSES in
+  exit
+line vty 5 15
+  access-class ADMIN_IP_ADDRESSES in
+  exit

@@ -1,0 +1,11 @@
+---
+# tasks file for info
+
+- name: Get data from device
+  ios_facts:
+    gather_subset: "!config"
+  register: gathered_results
+
+- name: Debug
+  debug: var="{{ gathered_results|to_nice_yaml }}"
+

@@ -1,0 +1,9 @@
+no ip access-list standard SNMP_SERVERS
+ip access-list standard SNMP_SERVERS
+{% for addr in snmp_servers %}
+  {{ loop.index * 10 }} permit {{ addr.address }} {{ addr.wildcard_mask }}
+{% endfor %}
+  deny any
+  exit
+snmp-server community {{ snmp_readonly_community }} RO SNMP_SERVERS
+snmp-server trap-source Loopback0
